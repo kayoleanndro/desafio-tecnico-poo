@@ -27,11 +27,11 @@ classDiagram
         +realizarLogin() boolean
     }
     
-    class Pessoa {
+    class models.Pessoa {
         <<abstract>>
         -String nome
         -String email
-        -Endereco endereco
+        -models.Endereco endereco
         +exibirDetalhes()* void
     }
     
@@ -46,7 +46,7 @@ classDiagram
         +exibirDetalhes() void
     }
     
-    class Endereco {
+    class models.Endereco {
         -String rua
         -String cidade
         -String cep
@@ -68,10 +68,10 @@ classDiagram
         HIBRIDO
     }
 
-    Pessoa <|-- Professor : herda
-    Pessoa <|-- Aluno : herda
+    models.Pessoa <|-- Professor : herda
+    models.Pessoa <|-- Aluno : herda
     Autenticavel <|.. Professor : implementa
-    Pessoa "1" *-- "1" Endereco : possui
+    models.Pessoa "1" *-- "1" models.Endereco : possui
     Curso "1" o-- "1" Professor : coordenado por
     Curso "1" o-- "*" Aluno : matriculados
 
@@ -81,13 +81,13 @@ classDiagram
 
 1. **Enum** `Modalidade`: Deve conter as constantes `PRESENCIAL`, `EAD` e `HIBRIDO`.
 2. **Interface** `Autenticavel`: Deve definir a assinatura do método `realizarLogin()`.
-3. **Classe Abstrata** `Pessoa`:
-* Deve conter os atributos encapsulados `nome`, `email` e um objeto `Endereco` (Associação 1:1).
+3. **Classe Abstrata** `models.Pessoa`:
+* Deve conter os atributos encapsulados `nome`, `email` e um objeto `models.Endereco` (Associação 1:1).
 * Deve possuir um método abstrato `exibirDetalhes()`.
 
 
 4. **Classes** `Aluno` e `Professor`:
-* Ambas devem herdar de `Pessoa` e implementar o método `exibirDetalhes()` com comportamentos específicos.
+* Ambas devem herdar de `models.Pessoa` e implementar o método `exibirDetalhes()` com comportamentos específicos.
 * Apenas o `Professor` deve implementar a interface `Autenticavel` (simulando um login com retorno `true` genérico).
 
 
